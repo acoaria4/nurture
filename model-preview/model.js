@@ -10,7 +10,7 @@ export const TIN_DIMENSIONS = Object.freeze({
   estimated: true,
 });
 
-const labelUrl = new URL('../assets/3d/nurture-label-wrap-concept-v1.png', import.meta.url).href;
+const labelUrl = new URL('../assets/3d/nurture-label-wrap-concept-v2.png', import.meta.url).href;
 
 function turnedPart(name, profile, material) {
   const points = profile.map(([radius, height]) => new THREE.Vector2(radius, height));
@@ -18,6 +18,7 @@ function turnedPart(name, profile, material) {
   mesh.name = name;
   mesh.castShadow = true;
   mesh.receiveShadow = true;
+  mesh.geometry.normalizeNormals();
   return mesh;
 }
 
@@ -28,6 +29,7 @@ function rolledEdge(name, radius, thickness, height, material) {
   mesh.position.y = height;
   mesh.castShadow = true;
   mesh.receiveShadow = true;
+  mesh.geometry.normalizeNormals();
   return mesh;
 }
 
@@ -53,6 +55,18 @@ function brushedSurface() {
   return texture;
 }
 
+function labelMetalness() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 16;
+  canvas.height = 512;
+  const context = canvas.getContext('2d');
+  context.fillStyle = '#000000';
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = '#b8b8b8';
+  context.fillRect(0, Math.round(canvas.height * 0.84), canvas.width, Math.ceil(canvas.height * 0.16));
+  return new THREE.CanvasTexture(canvas);
+}
+
 export async function createNurtureTin({ maxAnisotropy = 8 } = {}) {
   const label = await new THREE.TextureLoader().loadAsync(labelUrl);
   label.colorSpace = THREE.SRGBColorSpace;
@@ -70,15 +84,18 @@ export async function createNurtureTin({ maxAnisotropy = 8 } = {}) {
   const steel = new THREE.MeshStandardMaterial({
     name: 'Brushed base steel', color: '#c4c3ba', metalness: 1, roughness: 0.35,
   });
-  const paper = new THREE.MeshStandardMaterial({
-    name: 'Ivory printed concept label', map: label, roughness: 0.86, metalness: 0,
+  const paper = new THREE.MeshPhysicalMaterial({
+    name: 'Ivory print with gold foil band', map: label, roughness: 0.6, metalness: 1,
+    metalnessMap: labelMetalness(), clearcoat: 0.05, clearcoatRoughness: 0.7,
   });
   const tin = new THREE.Group();
-  tin.name = 'Nurture Everyday - concept tin';
+  tin.name = 'Nurture Everyday - complete concept tin v2';
   tin.userData = {
     status: 'concept', dimensions: TIN_DIMENSIONS,
     labelArtwork: 'Generated interpretation of user-provided product reference',
-    sideAndBackArtwork: 'Pending; intentionally blank',
+    sideAndBackArtwork: 'Designed concept panels with explicitly pending product details',
+    version: 2,
+    productInformation: 'Unconfirmed; placeholder values, not approved production packaging',
     sourceReference: 'trayn-nurture-everyday-marketing.png',
     frontDirection: '+Z',
   };
@@ -86,15 +103,24 @@ export async function createNurtureTin({ maxAnisotropy = 8 } = {}) {
   tin.add(turnedPart('Metal can shell', [
     [0.0485, -0.078], [0.0496, -0.0775], [0.05, -0.075],
     [0.05, 0.074], [0.0497, 0.076], [0.0485, 0.078],
+    [0.0483, 0.078], [0.0483, 0.076], [0.0486, 0.074],
+    [0.0486, -0.074], [0.0475, -0.0765],
   ], steel));
 
   const wrapper = new THREE.Mesh(new THREE.CylinderGeometry(0.05012, 0.05012, 0.148, 192, 1, true), paper);
   wrapper.name = 'Full circumference printed label';
-  // Cylinder UV midpoint faces -Z; turn it so the front artwork faces +Z.
-  wrapper.rotation.y = Math.PI;
+  // The complete label's front is at U=0.25 and back at U=0.75.
+  wrapper.rotation.y = -Math.PI / 2;
   wrapper.castShadow = true;
   wrapper.receiveShadow = true;
+  wrapper.geometry.normalizeNormals();
   tin.add(wrapper);
+  tin.add(rolledEdge('Can opening rolled bead', 0.0488, 0.00045, 0.0772, steel));
+  const insideBase = new THREE.Mesh(new THREE.CylinderGeometry(0.0484, 0.0484, 0.0013, 192), steel);
+  insideBase.name = 'Interior bottom plate';
+  insideBase.position.y = -0.0768;
+  insideBase.receiveShadow = true;
+  tin.add(insideBase);
 
   const lid = new THREE.Group();
   lid.name = 'Removable gold lid';
@@ -112,6 +138,10 @@ export async function createNurtureTin({ maxAnisotropy = 8 } = {}) {
   lid.add(rolledEdge('Upper lid bead', 0.0516, 0.00055, 0.0828, edgeGold));
   lid.add(rolledEdge('Lower lid lip', 0.0524, 0.0004, 0.074, edgeGold));
   lid.add(rolledEdge('Pressed lid ring', 0.0464, 0.0002, 0.082, gold));
+  lid.add(rolledEdge('Lid underside seating ring', 0.0488, 0.00032, 0.0807, gold));
+  lid.children.forEach((part) => { part.position.y -= 0.078; });
+  lid.position.y = 0.078;
+  lid.userData.closedPosition = [0, 0.078, 0];
   tin.add(lid);
 
   tin.add(turnedPart('Base rolled seam', [

@@ -45,6 +45,7 @@ select { color: #344b3a; background: #fafbf8; border: 1px solid #d4dccf; padding
 .toolbar .export-button { display: flex; align-items: center; gap: 9px; margin-left: 14px; background: #304e3b; color: #fff; font-size: 12px; }
 .toolbar .export-button:hover { background: #42674d; }
 .asset-note { text-align: center; margin: 0; padding: 4px 24px 19px; color: #7c857a; font-size: 11px; line-height: 1.5; }
+.asset-note a { color: #304e3b; text-underline-offset: 3px; margin-left: 6px; }
 .toast { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); background: #304e3b; color: #fff; padding: 12px 18px; font-size: 12px; max-width: 90%; text-align: center; border-radius: 4px; }
 .toast[hidden] { display: none; }
 

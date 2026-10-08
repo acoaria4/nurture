@@ -1,11 +1,10 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
-import { createIcons, Rotate3d, RotateCcw, ZoomOut, ZoomIn, Download, Camera } from 'lucide';
+import { createIcons, Rotate3d, RotateCcw, ZoomOut, ZoomIn, Download, Camera, PackageOpen } from 'lucide';
 import { createNurtureTin, disposeObject } from './model.js';
 
-createIcons({ icons: { Rotate3d, RotateCcw, ZoomOut, ZoomIn, Download, Camera } });
+createIcons({ icons: { Rotate3d, RotateCcw, ZoomOut, ZoomIn, Download, Camera, PackageOpen } });
 
 const canvas = document.querySelector('#model-canvas');
 const viewport = document.querySelector('.viewport');
@@ -13,6 +12,7 @@ const fallback = document.querySelector('#fallback');
 const rotationButton = document.querySelector('#rotate');
 const exportButton = document.querySelector('#export');
 const snapshotButton = document.querySelector('#snapshot');
+const lidButton = document.querySelector('#lid');
 const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
 const viewButtons = [...document.querySelectorAll('[data-view]')];
 let renderer;
@@ -25,6 +25,7 @@ let visible = true;
 let disposed = false;
 let cameraTween;
 let toastTimeout;
+let lidOpen = false;
 
 function notify(message) {
   const toast = document.querySelector('#toast');
@@ -44,13 +45,18 @@ function download(blob, name) {
 }
 
 async function exportBinary() {
+  const { GLTFExporter } = await import('three/addons/exporters/GLTFExporter.js');
   const originalRotation = tin.rotation.clone();
+  const lid = tin.getObjectByName('Removable gold lid');
+  const originalLidPosition = lid.position.clone();
+  lid.position.fromArray(lid.userData.closedPosition);
   tin.rotation.set(0, 0, 0);
   tin.updateMatrixWorld(true);
   try {
     return await new GLTFExporter().parseAsync(tin, { binary: true, onlyVisible: true });
   } finally {
     tin.rotation.copy(originalRotation);
+    lid.position.copy(originalLidPosition);
     tin.updateMatrixWorld(true);
   }
 }
@@ -113,7 +119,7 @@ async function start() {
   tin = await createNurtureTin({ maxAnisotropy: Math.min(renderer.capabilities.getMaxAnisotropy(), 8) });
   scene.add(tin);
   fallback.hidden = true;
-  exportButton.disabled = snapshotButton.disabled = false;
+  exportButton.disabled = snapshotButton.disabled = lidButton.disabled = false;
   canvas.setAttribute('aria-label', 'Nurture Everyday concept tin. Use arrow keys to rotate and plus or minus to zoom.');
 
   function selectView(name) {
@@ -139,7 +145,7 @@ async function start() {
       back: new THREE.Vector3(0, viewDistance * 0.09, -viewDistance),
       top: new THREE.Vector3(0, viewDistance, 0.02),
     };
-    cameraTween = { from: camera.position.clone(), to: positions[name], started: performance.now(), duration: motionPreference.matches ? 0 : 550 };
+    cameraTween = { from: camera.position.clone(), to: positions[name].add(controls.target), started: performance.now(), duration: motionPreference.matches ? 0 : 550 };
     requestFrame();
   }
 
@@ -178,7 +184,7 @@ async function start() {
     const { width, height } = viewport.getBoundingClientRect();
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
-    const nextDistance = Math.max(0.39, 0.065 / (Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect) + 0.07);
+    const nextDistance = Math.max(0.39, 0.065 / (Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect) + 0.07) * (lidOpen ? 1.32 : 1);
     const scale = nextDistance / viewDistance;
     camera.position.sub(controls.target).multiplyScalar(scale).add(controls.target);
     viewDistance = nextDistance;
@@ -205,6 +211,23 @@ async function start() {
     controls.enableDamping = !motionPreference.matches;
     selectView('custom');
   });
+  function setLidOpen(value) {
+    lidOpen = value;
+    const lid = tin.getObjectByName('Removable gold lid');
+    lid.position.fromArray(lid.userData.closedPosition);
+    if (value) lid.position.y += 0.05;
+    const nextTarget = new THREE.Vector3(0, value ? 0.025 : 0, 0);
+    camera.position.add(nextTarget.clone().sub(controls.target));
+    controls.target.copy(nextTarget);
+    lidButton.setAttribute('aria-pressed', String(value));
+    lidButton.setAttribute('aria-label', value ? 'Close lid' : 'Open lid');
+    lidButton.title = value ? 'Close lid' : 'Open lid';
+    cameraTween = null;
+    resize();
+    controls.update();
+    requestFrame();
+  }
+  lidButton.addEventListener('click', () => setLidOpen(!lidOpen));
   viewButtons.forEach((button) => button.addEventListener('click', () => goToView(button.dataset.view)));
   rotationButton.addEventListener('click', () => { cameraTween = null; selectView('orbit'); setRotation(!controls.autoRotate); });
   document.querySelector('#reset').addEventListener('click', () => goToView('front'));
@@ -227,7 +250,7 @@ async function start() {
   exportButton.addEventListener('click', async () => {
     exportButton.disabled = true;
     try {
-      download(new Blob([await exportBinary()], { type: 'model/gltf-binary' }), 'nurture-everyday-concept-v1.glb');
+      download(new Blob([await exportBinary()], { type: 'model/gltf-binary' }), 'nurture-everyday-complete-concept-v2.glb');
       notify('Model exported');
     } catch (error) { console.error(error); notify('Export failed. Please try again.'); }
     finally { exportButton.disabled = false; }
@@ -271,13 +294,14 @@ async function start() {
     cancelAnimationFrame(frame);
     fallback.hidden = false;
     document.querySelector('#loading-message').textContent = '3D view interrupted. Reload to restore.';
-    exportButton.disabled = snapshotButton.disabled = true;
+    exportButton.disabled = snapshotButton.disabled = lidButton.disabled = true;
     disposed = true;
   });
 
   window.nurturePreview = {
-    ready: true, model: tin, camera, renderer, scene, controls, THREE,
-    exportBinary, goToView, render: () => renderer.render(scene, camera),
+    ready: true, model: tin, camera, renderer, scene, controls,
+    math: { Box3: THREE.Box3, Vector3: THREE.Vector3 },
+    exportBinary, goToView, setLidOpen, render: () => renderer.render(scene, camera),
   };
   resize();
   requestFrame();

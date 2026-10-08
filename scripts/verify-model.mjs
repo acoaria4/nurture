@@ -48,7 +48,7 @@ async function canvasPixels(page) {
 
 async function frameInfo(page) {
   return page.evaluate(async () => {
-    const { model, camera, renderer, THREE } = window.nurturePreview;
+    const { model, camera, renderer, math: THREE } = window.nurturePreview;
     model.updateMatrixWorld(true);
     camera.updateMatrixWorld(true);
     const box = new THREE.Box3().setFromObject(model);
@@ -137,7 +137,7 @@ try {
   const downloadPromise = page.waitForEvent('download');
   await page.locator('#export').click();
   const download = await downloadPromise;
-  const modelPath = path.join(root, 'assets', '3d', 'nurture-everyday-concept-v1.glb');
+  const modelPath = path.join(root, 'assets', '3d', 'nurture-everyday-complete-concept-v2.glb');
   await download.saveAs(modelPath);
   const modelBuffer = await readFile(modelPath);
   assert.equal(modelBuffer.toString('ascii', 0, 4), 'glTF');
@@ -151,7 +151,7 @@ try {
   report.model = { bytes: modelBuffer.length, meshes: gltf.meshes.length, materials: gltf.materials.length, embeddedImages: gltf.images.length };
   const loaded = await page.evaluate(async () => {
     const { GLTFLoader } = await import('/node_modules/three/examples/jsm/loaders/GLTFLoader.js');
-    const result = await new GLTFLoader().loadAsync('/assets/3d/nurture-everyday-concept-v1.glb');
+    const result = await new GLTFLoader().loadAsync('/assets/3d/nurture-everyday-complete-concept-v2.glb');
     let meshes = 0;
     result.scene.traverse((part) => { if (part.isMesh) meshes++; });
     const metadata = result.scene.children[0].userData;
@@ -159,8 +159,16 @@ try {
   });
   assert.equal(loaded.meshes, report.model.meshes);
   assert.equal(loaded.metadata.status, 'concept');
+  assert.equal(loaded.metadata.version, 2);
   report.model.roundTripLoad = true;
   report.model.metadata = loaded.metadata;
+  await page.getByRole('button', { name: 'Open lid', exact: true }).click();
+  assert.equal(await page.evaluate(() => Number(window.nurturePreview.model.getObjectByName('Removable gold lid').position.y.toFixed(3))), 0.128);
+  assert((await frameInfo(page)).framed, 'Open lid should remain framed');
+  await page.screenshot({ path: path.join(output, 'desktop-open-lid.png'), fullPage: true });
+  await page.getByRole('button', { name: 'Close lid', exact: true }).click();
+  assert.equal(await page.evaluate(() => window.nurturePreview.model.getObjectByName('Removable gold lid').position.y), 0.078);
+  report.interactions.removableLid = true;
 
   const snapshotPromise = page.waitForEvent('download');
   await page.locator('#snapshot').click();

@@ -48,8 +48,8 @@
         }
       ],
       "pixels": {
-        "distinctQuantizedColors": 322,
-        "productPixels": 2431
+        "distinctQuantizedColors": 389,
+        "productPixels": 2436
       }
     },
     {
@@ -99,13 +99,13 @@
         }
       ],
       "pixels": {
-        "distinctQuantizedColors": 133,
-        "productPixels": 528
+        "distinctQuantizedColors": 175,
+        "productPixels": 560
       }
     },
     {
       "device": "mobile-narrow",
-      "width": 320,
+      "width": 321,
       "height": 629,
       "overflow": false,
       "framed": true,
@@ -117,41 +117,41 @@
       "canvasVisible": true,
       "corners": [
         {
-          "x": -0.6220263594156316,
-          "y": -0.4599215486993956
+          "x": -0.6215563305639012,
+          "y": -0.4610775021517835
         },
         {
-          "x": -0.7648367867842596,
-          "y": -0.6352716513767194
+          "x": -0.7647001088438381,
+          "y": -0.6372360368862896
         },
         {
-          "x": -0.6388153133493045,
-          "y": 0.540100638725545
+          "x": -0.6383759040545413,
+          "y": 0.5414948457644299
         },
         {
-          "x": -0.7903780984034148,
-          "y": 0.5961561079797608
+          "x": -0.7903184662569057,
+          "y": 0.5980612976658635
         },
         {
-          "x": 0.6220263594156316,
-          "y": -0.4599215486993956
+          "x": 0.6215563305639012,
+          "y": -0.4610775021517835
         },
         {
-          "x": 0.7648367867842596,
-          "y": -0.6352716513767194
+          "x": 0.7647001088438381,
+          "y": -0.6372360368862896
         },
         {
-          "x": 0.6388153133493045,
-          "y": 0.540100638725545
+          "x": 0.6383759040545413,
+          "y": 0.5414948457644299
         },
         {
-          "x": 0.7903780984034148,
-          "y": 0.5961561079797608
+          "x": 0.7903184662569057,
+          "y": 0.5980612976658635
         }
       ],
       "pixels": {
-        "distinctQuantizedColors": 177,
-        "productPixels": 570
+        "distinctQuantizedColors": 214,
+        "productPixels": 601
       }
     }
   ],
@@ -162,18 +162,19 @@
     "zoom": true,
     "lighting": true,
     "keyboard": true,
+    "removableLid": true,
     "pngExport": true,
     "touchControls": true,
     "reducedMotion": true
   },
   "model": {
-    "bytes": 2612684,
-    "meshes": 10,
+    "bytes": 3294892,
+    "meshes": 13,
     "materials": 4,
-    "embeddedImages": 2,
+    "embeddedImages": 3,
     "roundTripLoad": true,
     "metadata": {
-      "name": "Nurture Everyday - concept tin",
+      "name": "Nurture Everyday - complete concept tin v2",
       "status": "concept",
       "dimensions": {
         "bodyRadius": 0.05,
@@ -185,7 +186,9 @@
         "estimated": true
       },
       "labelArtwork": "Generated interpretation of user-provided product reference",
-      "sideAndBackArtwork": "Pending; intentionally blank",
+      "sideAndBackArtwork": "Designed concept panels with explicitly pending product details",
+      "version": 2,
+      "productInformation": "Unconfirmed; placeholder values, not approved production packaging",
       "sourceReference": "trayn-nurture-everyday-marketing.png",
       "frontDirection": "+Z"
     }

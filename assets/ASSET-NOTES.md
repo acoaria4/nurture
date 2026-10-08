@@ -24,9 +24,11 @@ Campaign: Create a 16:9 premium editorial photograph based on the reference tin.
 
 ## Created 3D asset
 
-A reusable Three.js tin has been created in `../model-preview/model.js` and exported to `3d/nurture-everyday-concept-v1.glb`. It has a separate gold lid, recessed top, rolled rims, printed label and steel base. The generated flat label is `3d/nurture-label-wrap-concept-v1.png`. Dimensions are estimated; unseen side and back artwork are blank and provisional. This single model supports coherent 360-degree rotation and future rendered sequences.
+A reusable Three.js tin has been created in `../model-preview/model.js` and exported to `3d/nurture-everyday-complete-concept-v2.glb`. It has a removable gold lid, recessed top, underside, hollow interior, opening bead, rolled rims, gold foil label band and steel base. The generated flat label is `3d/nurture-label-wrap-concept-v2.png`, with designed front, botanical side and placeholder back panels. Dimensions and product information are provisional. Version 1 files are retained. This single model supports coherent 360-degree rotation and matching rendered product photos.
 
 The inspection preview is served at `/model-preview/`. It is not the product page. See `3d/README.md` for model metadata and usage, and `../verification/report.json` for browser verification results.
+
+Nine matching 1600-by-2000 PNG renders are saved in `product-photos/v2/`, with front, three-quarter, back, side, top, open-lid and detail studio views plus two alpha-transparent cutouts. The gallery is `/model-preview/photos.html`. These are CGI product renderings, not photographs of manufactured packaging.
 
 Exact reproduction needs approved flat label artwork and real packaging dimensions. An external 3D artist is optional.
 
