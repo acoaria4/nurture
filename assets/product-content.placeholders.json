@@ -1,0 +1,36 @@
+{
+  "status": "concept-only",
+  "productName": "Nurture Everyday",
+  "brand": "TRAYN Nutrition",
+  "referenceImage": "trayn-nurture-everyday-marketing.png",
+  "referencePackWeightGrams": 400,
+  "referenceCopy": "Everyday Nutrition for Every Woman",
+  "referenceTagline": "To Feel Strong. To Live Well. Every Day.",
+  "unconfirmed": {
+    "currency": "INR",
+    "price": null,
+    "mrp": null,
+    "flavours": null,
+    "servingSizeGrams": null,
+    "servingsPerPack": null,
+    "preparationInstructions": null,
+    "fullIngredients": null,
+    "nutritionFacts": null,
+    "allergens": null,
+    "approvedBenefitCopy": null,
+    "certifications": null,
+    "shippingPolicy": null,
+    "returnPolicy": null,
+    "checkoutUrl": null,
+    "customerReviews": null
+  },
+  "placeholderDisplay": {
+    "price": "[Price pending]",
+    "flavours": "[Flavours pending]",
+    "servingInstructions": "[Serving instructions pending]",
+    "nutrition": "[Nutrition facts pending]",
+    "ingredientsAndAllergens": "[Ingredients and allergens pending]",
+    "shippingAndReturns": "[Shipping and returns pending]",
+    "checkout": "[Checkout pending]"
+  }
+}

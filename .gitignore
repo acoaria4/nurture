@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.vite/
+preview-server.log
+preview-server.err.log
