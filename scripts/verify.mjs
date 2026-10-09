@@ -33,7 +33,8 @@ async function layout(page, name, width, height, screenshot = false) {
   assert(await page.locator('.hero-angle').evaluate(img => img.complete && img.naturalWidth > 0));
   if (screenshot) await page.screenshot({ path: path.join(output, `${name}-hero.png`) });
   await reveal(page);
-  const dimensions = await page.evaluate(() => ({ viewport: innerWidth, document: document.documentElement.scrollWidth, pageHeight: document.documentElement.scrollHeight, brokenImages: [...document.querySelectorAll('main img')].filter(img => !img.complete || !img.naturalWidth).map(img => img.src) }));
+  // The closed lightbox intentionally defers its image. Check it when opened.
+  const dimensions = await page.evaluate(() => ({ viewport: innerWidth, document: document.documentElement.scrollWidth, pageHeight: document.documentElement.scrollHeight, brokenImages: [...document.querySelectorAll('main img')].filter(img => !img.closest('dialog:not([open])')).filter(img => !img.complete || !img.naturalWidth).map(img => img.src) }));
   assert(dimensions.document <= dimensions.viewport + 1, `${name}: horizontal overflow ${JSON.stringify(dimensions)}`);
   assert.equal(dimensions.brokenImages.length, 0, `${name}: broken images`);
   report.layouts.push({ name, width, height, ...dimensions });
@@ -62,9 +63,12 @@ try {
   assert.equal(await desktop.getByRole('button', { name: /The artwork/ }).getAttribute('aria-pressed'), 'true');
   await desktop.getByRole('button', { name: 'Enlarge the artwork' }).click();
   assert(await desktop.getByRole('dialog').isVisible());
+  await desktop.locator('.lightbox-image img').evaluate(img => img.decode());
   await desktop.keyboard.press('ArrowRight');
+  await desktop.locator('.lightbox-image img').evaluate(img => img.decode());
   assert((await desktop.locator('#gallery-dialog-title').innerText()).startsWith('The inside'));
   await desktop.keyboard.press('ArrowLeft');
+  await desktop.locator('.lightbox-image img').evaluate(img => img.decode());
   assert((await desktop.locator('#gallery-dialog-title').innerText()).startsWith('The artwork'));
   await desktop.keyboard.press('Escape');
   assert.equal(await desktop.locator('dialog[open]').count(), 0);

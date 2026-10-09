@@ -10,7 +10,7 @@ try {
   for (const width of [1440, 390]) {
     const context = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: 'reduce' });
     const page = await context.newPage();
-    await page.goto('http://127.0.0.1:4180/', { waitUntil: 'networkidle' });
+    await page.goto(process.env.SITE_URL || 'http://127.0.0.1:4180/', { waitUntil: 'networkidle' });
     const result = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
     reports.push({ width, passes: result.passes.length, violations: result.violations.map(v => ({ id: v.id, impact: v.impact, description: v.description, nodes: v.nodes.map(n => ({ targets: n.target, summary: n.failureSummary })) })), incomplete: result.incomplete.map(v => v.id) });
     await context.close();

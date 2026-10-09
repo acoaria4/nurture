@@ -32,6 +32,34 @@
       "bytes": 64118
     },
     {
+      "path": "product/hero-mobile.webp",
+      "source": "masters/hero-mobile.png",
+      "width": 720,
+      "height": 1080,
+      "bytes": 104254
+    },
+    {
+      "path": "product/hero-mobile-small.webp",
+      "source": "masters/hero-mobile.png",
+      "width": 360,
+      "height": 540,
+      "bytes": 34398
+    },
+    {
+      "path": "product/front-mobile.webp",
+      "source": "masters/front-mobile.png",
+      "width": 720,
+      "height": 1080,
+      "bytes": 108802
+    },
+    {
+      "path": "product/front-mobile-small.webp",
+      "source": "masters/front-mobile.png",
+      "width": 360,
+      "height": 540,
+      "bytes": 36554
+    },
+    {
       "path": "product/finish.webp",
       "source": "masters/finish.png",
       "width": 1086,

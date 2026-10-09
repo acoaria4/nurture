@@ -1,6 +1,6 @@
 # Nurture — The everyday, considered
 
-The light luxury Nurture product concept showcase is the root application. Its complete asset library is self-contained in `assets/`; the archived application can be removed without affecting the site. This edition follows the installed `build-awwwards-quality-sites` workflow and the compatible editorial luxury direction from `high-end-visual-design`. See [DESIGN.md](DESIGN.md) for the ordered concept, art direction and interaction decisions, and [AUDIT.md](AUDIT.md) for measured verification and limitations.
+The light luxury Nurture product concept showcase is the root application. Its complete asset library is self-contained in `assets/`; the old application has been deleted. This edition follows the installed `build-awwwards-quality-sites` workflow and the compatible editorial luxury direction from `high-end-visual-design`. See [DESIGN.md](DESIGN.md) for the ordered concept, art direction and interaction decisions, and [AUDIT.md](AUDIT.md) for measured verification and limitations.
 
 ## Run
 
@@ -59,6 +59,7 @@ Playwright, Axe and Sharp are installed as root development dependencies. Browse
 
 ```sh
 npm run verify:assets
+npm run verify:pages
 npm run verify
 npm run verify:accessibility
 npm run verify:browsers
@@ -69,6 +70,19 @@ The production browser suite checks 320, 390, 820, 1440 and 1920px layouts, anch
 
 Performance runs three sequential cold-cache samples per scenario, including mobile with 4× CPU slowdown, 1.6 Mbps download and 150ms latency. These are local browser measurements, not Lighthouse scores, real-device results or field Core Web Vitals. Reports and screenshots live in `verification/` and are ignored by Git. The verification scripts create that directory when needed. Run performance separately from other browser jobs.
 
-## Archived website
+## GitHub Pages
 
-The previous site is preserved in `old_website/` solely as an optional archive. Its source assets are not required by the root application or regeneration scripts. Run it separately with `npm --prefix old_website run dev -- --port 4182`. Build it with `npm --prefix old_website run build`. Root commands always target the new site. The root .gitignore applies to both projects; source assets and lockfiles stay trackable while dependencies, builds, browser caches, local reports and logs are ignored.
+This site is static: deploy the prerendered `dist/` output through GitHub Actions. There is no server, client router or archive dependency. Relative URLs work at a project path such as `/nurture/`. The manual release workflow in `.github/workflows/pages.yml` installs locked dependencies, type-checks, builds with the Pages URL for canonical/sharing metadata, verifies local assets, and uploads only `dist/`.
+
+To publish after merging this work to the repository default branch:
+
+1. In Settings → Pages, choose **GitHub Actions** as the source.
+2. In Actions, run **Publish Nurture to GitHub Pages** from the default branch.
+
+Nothing has been published by this local task. GitHub CLI was not authenticated, so repository visibility, account eligibility and existing Pages/environment settings were not inspected. See the [official Pages workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+
+To reproduce project-path hosting locally, build with PUBLIC_SITE_URL set to `https://acoaria4.github.io/nurture/`, then run `npm run preview:pages`. It serves static files at http://127.0.0.1:4183/nurture/ without Vite rewrites. Set SITE_URL to that address for the browser suites. `npm run verify:pages` checks canonical/sharing URLs, portrait and landscape touch layouts at DPR 3, responsive asset selection, 44px primary touch targets and application-bundle failure. For a different production domain, give the build and verification the same PUBLIC_SITE_URL.
+
+The header uses a created outlined NURTURE wordmark above a smaller flat TRAYN Nutrition endorsement. Mobile uses dedicated generated 360/720px product images, native scrolling, larger reading/touch sizes, an exploration link before the product, and a complete endorsement even at 320px. Exact generation prompts and native wordmark source are recorded under assets/. The closed lightbox defers its full-size image until it opens; initial header geometry is reserved while hydration loads, with native navigation restored if the bundle fails.
+
+The source/assets/lockfiles remain tracked; dependencies, build outputs, browser caches, local reports, logs and Python bytecode are ignored. The former archive has been deleted after independence checks.

@@ -18,7 +18,7 @@ export default defineConfig({
         await cp(path.join(root, 'assets', directory), path.join(destination, directory), { recursive: true });
       }
       await mkdir(path.join(destination, 'brand'), { recursive: true });
-      for (const file of ['trayn-symbol.webp', 'trayn-wordmark.webp', 'favicon.svg']) {
+      for (const file of ['trayn-symbol.webp', 'trayn-wordmark.webp', 'trayn-endorsement.webp', 'nurture-wordmark.svg', 'favicon.svg']) {
         await cp(path.join(root, 'assets', 'brand', file), path.join(destination, 'brand', file));
       }
       await mkdir(path.join(destination, 'fonts'), { recursive: true });

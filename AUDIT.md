@@ -1,5 +1,58 @@
 # Implementation audit — 9 October 2026
 
+## Latest edition — mobile identity and GitHub Pages readiness
+
+The root site is independent of the previous application. The archive was permanently deleted at the user's request after the 14-image asset integrity check passed. With that folder absent, root asset preparation, type checking, production builds and the final browser suites all passed. Older sections below record earlier editions and measurements.
+
+The creative concept remains **The everyday, considered.** Exactly one product-led signature remains: **A closer look**, an explicit reversible angle/front inspection with two artwork annotations, an immediate reduced-motion alternative, and a static prerendered view. The compatible design direction is high-end-visual-design's editorial luxury; GSAP/ScrollTrigger and desktop-only Lenis remain the motion stack. No Three.js runtime or additional signature was introduced.
+
+### Changed files and assets
+
+- Navigation.tsx and styles.css replace the divided live-text branding with assets/brand/nurture-wordmark.svg, an authored seven-letter outlined wordmark, above a smaller flat espresso TRAYN Nutrition adaptation. brand/create-wordmark.py preserves its native generation source; the locally licensed Cormorant font remains in assets/fonts/. The flat TRAYN master and lossless WebP delivery also live in assets/brand/.
+- Hero.tsx, product.ts and prepare-media.mjs add two newly generated phone masters and four 360/720px deliveries under assets/. Picture sources choose them below 760px. The mobile product is larger, the exploration link precedes it, reading sizes and touch targets improve, and the complete endorsement remains at 320px. A compact coarse-pointer landscape composition keeps the primary action within the first screen.
+- ProductGallery.tsx defers the closed lightbox's full-size image. Its image is explicitly decoded and checked after opening in the production/cross-browser suites. index.html, main.tsx and styles.css reserve the mobile header while hydration loads and restore native navigation on module-load failure. The inspection control reserves its loading-label width.
+- social-preview.mjs and assets/social/social-preview.jpg adopt the new lockup. Exact raster prompts/input roles/output IDs are in assets/GENERATION.md; provenance, framing and limitations are in assets/PROVENANCE.md and DIRECTION.md. Native and built-in generation outputs are all retained within root assets/.
+- vite.config.ts copies only runtime brand/product/icon/social assets. .gitignore keeps those assets and workflow trackable, while ignoring build output, browser reports/caches, dependencies and Python bytecode. package.json adds preview:pages and verify:pages. Verification scripts check project-path hosting, high-density touch, metadata, image deferral and module failure. README documents release setup; .github/workflows/pages.yml prepares a manual Pages release.
+
+### Actual verification
+
+The final production output was served at http://127.0.0.1:4183/nurture/ by a strict static-file server, without Vite rewrites or SPA fallback. Root type checking and prerendered production build passed. The delivery has 41 files totalling 2,040,535 bytes; generation/reference PNGs and wordmark tooling are excluded. All 18 product delivery hashes match root sources, and 30 prerendered asset references resolve. The source/build/regeneration dependency scan finds no archive dependency.
+
+Chrome production checks passed at 320, 390, 820, 1440 and 1920px: full content, no horizontal overflow or broken visible images, reversible signature, all gallery views, decoded lightbox images, anchors, native FAQ, keyboard focus/traps/Escape/restore, mobile navigation, reduced motion, no-JavaScript rendering, real image failure/recovery and no unexpected HTTP/JavaScript errors. Axe scans at 1440/390px each recorded 26 passing rules and zero violations. The contrast incomplete item remains in the raw reports; manual calculations for the actual primary/muted/accent text on ivory/oat/stone give 12.89, 6.26, 5.55, 5.06, 5.20 and 4.92:1, all above 4.5:1. These checks do not substitute for a screen-reader or participant study.
+
+Separate DPR 3 touch checks passed at 320×568, 360×800, 390×844 and 430×932, plus 844×390 landscape. They confirm the complete lockup, first-viewport exploration link, primary touch targets at least 44px, high-resolution mobile-source selection, tap inspection/reversal, menu/anchor/home navigation, canonical/sharing URLs and no overflow/errors. Deliberately blocking the application bundle restores native navigation and preserves the prerendered page and FAQ. The portrait and desktop renders and header crop were visually inspected in real browser screenshots.
+
+Edge 154.0.4258.62 and WebKit 27.2 passed at 1440/390px, including decoded modal imagery, keyboard navigation and reduced motion. Development lifecycle diagnostics still return application animations, ScrollTriggers and Lenis tickers to zero on unmount and live reduced motion, clear open dialogs/scroll locks and remount without multiplication. GSAP's single internal refresh callback is reported separately.
+
+### Actual performance measurements
+
+Nine sequential cold-cache headless Chrome loads, three per scenario, against the final Pages-style static server; DPR 1. Throttled mobile: 4× CPU, 1.6 Mbps download, 0.75 Mbps upload, 150ms latency. No other browser suites ran during measurement. Local lab observations only: no Lighthouse score, field data or deployed GitHub Pages timing is claimed.
+
+| Final median | LCP | FCP | CLS | Transfer bytes | Observed long-task blocking |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Desktop 1440×900 | 92ms | 92ms | 0.000132 | 791,460 | 0ms |
+| Mobile 390×844 | 88ms | 88ms | 0 | 646,764 | 0ms |
+| Throttled mobile | 1,256ms | 1,212ms | 0 | 646,764 | 67ms |
+
+LCP was the hero-angle image in every sample; throttled samples ranged 1,244–1,276ms. Blocking is the sum of observed task duration above 50ms, not Lighthouse TBT. A loading trace identified the mobile no-JavaScript-navigation-to-hydrated-header transition as the major initial shift; the final three throttled samples had CLS 0 after correction. JS is 378,614 bytes / 124,057 gzip; CSS 25,040 / 6,036 gzip; sharing JPEG 53,179 bytes at 1200×630. Reports and screenshots are retained locally in ignored verification/.
+
+### Hosting and remaining limits
+
+The static output is technically compatible with GitHub Pages, including a repository subpath and absolute sharing metadata. The prepared workflow uses official action revisions from Vite's deployment documentation and the Pages action's real base_url output. It runs manually, installs locked dependencies on Node 24, type-checks, builds, verifies asset integrity and deploys only dist/. No workflow was executed remotely and nothing was published. GitHub CLI was unauthenticated, so repository visibility, Pages eligibility and environment/settings were not inspected. After merging to the default branch, choose GitHub Actions under Settings → Pages and manually run the workflow.
+
+Approved product photography/artwork/formula, launch information and any commerce/waitlist service remain future integrations. Generated logo and packaging interpretations may differ slightly from their references. Actual iPhone/Safari hardware, Firefox, screen readers, human usability and deployed-host performance remain untested. The concept disclosure and noindex policy remain in place.
+
+### Candid internal rubric
+
+| Criterion | Internal rating | Assessment |
+| --- | ---: | --- |
+| Design | 8.5/10 | The deliberate lockup and larger phone product improve cohesion; generated artwork and endorsement details still limit exact brand fidelity. |
+| Usability | 8.6/10 | Portrait/landscape touch, keyboard, motion alternatives, static content and loading/failure paths are verified. Hardware and assistive-technology study remains open. |
+| Creativity | 7/10 | Product inspection supports everyday attention; the experience remains deliberately restrained. |
+| Content | 7/10 | Honest concept information and disclosure, with real formulation and sales details still unavailable. |
+
+These are subjective implementation self-assessments, not Awwwards votes, awards or predictions. No submission was performed.
+
 ## Scope and concept
 
 Complete light luxury rebuild inside `nurture-redesign/`, using the installed `build-awwwards-quality-sites` skill and compatible editorial direction. The parent website and original source assets were not edited. Phase 0–3 decisions are recorded in DESIGN.md; Phase 4–6 results follow here. No award submission or deployment was performed.

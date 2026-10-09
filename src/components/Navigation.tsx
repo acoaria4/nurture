@@ -16,7 +16,10 @@ export default function Navigation() {
   }, []);
   return <>
     <header className="site-header">
-      <a href="#top" className="brand" aria-label="Nurture Everyday home">nurture<span className="brand-note">by TRAYN Nutrition</span></a>
+      <a href="#top" className="brand" aria-label="Nurture by TRAYN Nutrition — home">
+        <img className="brand-nurture" src="./assets/brand/nurture-wordmark.svg" width="170" height="30" alt="" />
+        <span className="brand-endorsement"><span>by</span><img src="./assets/brand/trayn-endorsement.webp" width="87" height="19" alt="" /></span>
+      </a>
       <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(link => <a key={link.href} href={link.href}>{link.label}</a>)}</nav>
       <a className="header-link" href="#development">In the making <Arrow diagonal /></a>
       <button ref={trigger} className="menu-toggle" type="button" aria-label="Open navigation" aria-controls="mobile-navigation" aria-expanded={open} onClick={() => setOpen(true)}>Menu <span aria-hidden="true">+</span></button>

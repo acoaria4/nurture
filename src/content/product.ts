@@ -10,8 +10,12 @@ export const product = {
   media: {
     hero: './assets/product/hero.webp',
     heroSmall: './assets/product/hero-small.webp',
+    heroMobile: './assets/product/hero-mobile.webp',
+    heroMobileSmall: './assets/product/hero-mobile-small.webp',
     front: './assets/product/front.webp',
     frontSmall: './assets/product/front-small.webp',
+    frontMobile: './assets/product/front-mobile.webp',
+    frontMobileSmall: './assets/product/front-mobile-small.webp',
     ritual: './assets/product/ritual.webp',
     ritualSmall: './assets/product/ritual-small.webp',
     detail: './assets/product/finish.webp',

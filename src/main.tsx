@@ -8,6 +8,7 @@ import './styles.css';
 import App from './App';
 
 document.documentElement.classList.add('has-js');
+document.documentElement.classList.remove('js-pending');
 const element = document.getElementById('root')!;
 const app = <StrictMode><App /></StrictMode>;
 let mounted: Root;

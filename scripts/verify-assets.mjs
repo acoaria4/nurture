@@ -9,6 +9,12 @@ for (const file of manifest.files) {
   const delivery = await readFile(new URL(`dist/assets/${file.path}`, root));
   assert.equal(digest(source), digest(delivery), `Deployed asset differs: ${file.path}`);
 }
+for (const name of ['nurture-wordmark.svg', 'trayn-endorsement.webp']) {
+  assert.equal(digest(await readFile(new URL(`assets/brand/${name}`, root))), digest(await readFile(new URL(`dist/assets/brand/${name}`, root))), `Deployed identity differs: ${name}`);
+}
+for (const name of ['trayn-endorsement-master.png', 'create-wordmark.py']) {
+  assert.equal(await stat(new URL(`dist/assets/brand/${name}`, root)).then(() => true, () => false), false, `Brand source leaked into deployment: ${name}`);
+}
 assert.equal(await stat(new URL('dist/assets/masters', root)).then(() => true, () => false), false, 'Generation masters leaked into deployment');
 assert.equal(await stat(new URL('dist/assets/reference', root)).then(() => true, () => false), false, 'Source reference leaked into deployment');
 async function inspect(directory) {

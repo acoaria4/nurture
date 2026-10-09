@@ -58,8 +58,14 @@ export default function Hero() {
       <div className="hero-stage">
         <div className="hero-stage-top"><span>Object study / 01</span><span>400g on reference artwork</span></div>
         <div className="hero-product" role="img" aria-label={inspecting ? 'Front view of the Nurture cream tin, gold lid and botanical artwork' : 'Three-quarter view of the Nurture Everyday concept tin'}>
-          <img className="hero-angle" ref={angle} src={product.media.hero} srcSet={`${product.media.heroSmall} 600w, ${product.media.hero} 1000w`} sizes="(max-width: 759px) 51vw, 29vw" width="1000" height="1500" alt="" fetchPriority="high" />
-          <img className="hero-front" ref={front} src={product.media.front} srcSet={`${product.media.frontSmall} 600w, ${product.media.front} 1000w`} sizes="(max-width: 759px) 51vw, 29vw" width="1000" height="1500" alt="" loading="eager" onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
+          <picture>
+            <source media="(max-width: 759px)" srcSet={`${product.media.heroMobileSmall} 360w, ${product.media.heroMobile} 720w`} sizes="(max-width: 370px) 190px, 215px" />
+            <img className="hero-angle" ref={angle} src={product.media.hero} srcSet={`${product.media.heroSmall} 600w, ${product.media.hero} 1000w`} sizes="29vw" width="1000" height="1500" alt="" fetchPriority="high" />
+          </picture>
+          <picture>
+            <source media="(max-width: 759px)" srcSet={`${product.media.frontMobileSmall} 360w, ${product.media.frontMobile} 720w`} sizes="(max-width: 370px) 190px, 215px" />
+            <img className="hero-front" ref={front} src={product.media.front} srcSet={`${product.media.frontSmall} 600w, ${product.media.front} 1000w`} sizes="29vw" width="1000" height="1500" alt="" loading="eager" onLoad={() => { setLoaded(true); setFailed(false); }} onError={() => setFailed(true)} />
+          </picture>
         </div>
         <div className="hero-detail-notes" aria-hidden={!inspecting}>
           <p className="hero-detail-note"><span>01</span>A warm gold finish.</p>

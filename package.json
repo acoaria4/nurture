@@ -12,6 +12,8 @@
     "assets:prepare": "node scripts/prepare-media.mjs",
     "assets:social": "node scripts/social-preview.mjs",
     "verify:assets": "node scripts/verify-assets.mjs",
+    "verify:pages": "node scripts/verify-mobile-pages.mjs",
+    "preview:pages": "node scripts/serve-pages-preview.mjs",
     "verify:accessibility": "node scripts/audit-accessibility.mjs",
     "verify:browsers": "node scripts/cross-browser.mjs",
     "measure:performance": "node scripts/performance.mjs"

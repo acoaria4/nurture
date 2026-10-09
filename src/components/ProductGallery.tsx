@@ -42,7 +42,7 @@ export default function ProductGallery() {
     <dialog ref={dialog} className="gallery-dialog" aria-labelledby="gallery-dialog-title" data-lenis-prevent onClick={event => { if (event.target === dialog.current) setExpanded(false); }}>
       <div className="lightbox-inner">
         <div className="lightbox-top"><h3 id="gallery-dialog-title">{image.label} <span> / Nurture Everyday</span></h3><button type="button" className="circle-control" aria-label="Close enlarged view" onClick={() => setExpanded(false)}>×</button></div>
-        <div className={`lightbox-image ${image.cutout ? 'is-cutout' : ''}`}><img src={image.source} alt={image.alt} width={image.width} height={image.height} /></div>
+        <div className={`lightbox-image ${image.cutout ? 'is-cutout' : ''}`}><img src={image.source} alt={image.alt} width={image.width} height={image.height} loading="lazy" /></div>
         <div className="lightbox-controls"><button type="button" className="circle-control" aria-label="Previous product view" onClick={() => select(selected - 1)}>←</button><p aria-live="polite">0{selected + 1} / 04 <span>{image.note}</span></p><button type="button" className="circle-control" aria-label="Next product view" onClick={() => select(selected + 1)}>→</button></div>
       </div>
     </dialog>

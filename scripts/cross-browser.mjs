@@ -30,11 +30,13 @@ try {
         await page.getByRole('button', { name: /The artwork/ }).click();
         await page.getByRole('button', { name: 'Enlarge the artwork' }).click();
         await page.getByRole('dialog').waitFor({ state: 'visible' });
+        await page.locator('.lightbox-image img').evaluate(img => img.decode());
         for (let i = 0; i < 5; i++) {
           await page.keyboard.press('Tab');
           assert(await page.evaluate(() => !!document.activeElement.closest('dialog')), `${setup.name}: modal focus escape`);
         }
         await page.keyboard.press('ArrowRight');
+        await page.locator('.lightbox-image img').evaluate(img => img.decode());
         assert((await page.locator('#gallery-dialog-title').innerText()).startsWith('The inside'));
         await page.keyboard.press('Escape');
         await page.waitForFunction(() => document.querySelectorAll('dialog[open]').length === 0);

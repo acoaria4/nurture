@@ -1,5 +1,11 @@
 # Asset provenance — regenerated studio series
 
+## Mobile and header refinement
+
+The header now uses brand/nurture-wordmark.svg: seven outlined Cormorant Garamond uppercase letters with authored spacing. Its source is brand/create-wordmark.py and the original font/license is retained in fonts/. No external font is needed to render this asset. brand/trayn-endorsement-master.png is a built-in image_gen flat espresso adaptation of the user-supplied metallic TRAYN Nutrition mark. brand/trayn-endorsement.webp is its lossless, alpha-trimmed delivery. The original mark remains preserved. At header size the endorsement is intentionally subordinate; generated shape differences remain possible.
+
+masters/hero-mobile.png and front-mobile.png are new paired upright near-front product concepts, composed for phones. Four responsive WebP deliveries use 360px and 720px widths, with the whole generated frame retained. Picture sources deliver them only below 760px. These remain disclosed concept interpretations, with the same unapproved artwork/formulation limitations as the desktop series. Exact prompts and output IDs are in GENERATION.md. All new assets, including the regenerated sharing composition, live under root assets/.
+
 All asset sources and deliverables for the root application are self-contained in this assets/ directory. Deleting the archived application will not affect development, regeneration from saved masters, production builds or deployed media.
 
 ## Identity sources

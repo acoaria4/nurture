@@ -1,5 +1,27 @@
 # Selected image-generation requests
 
+## Mobile and header edition — built-in image_gen, 9 October 2026
+
+### Mobile angle — masters/hero-mobile.png
+Input: masters/hero-angle.png (packaging identity reference).
+Selected output: exec-7373235f-a4da-4d11-9f28-9f92f6797349.png. transparent_background: true.
+
+Use case: product-mockup. Reference image: supplied Nurture cream and champagne-gold concept tin in masters/hero-angle.png; preserve that packaging design and proportions. Create a fresh premium studio CUTOUT for a small phone screen. One complete upright cylindrical tin, almost front-facing with a restrained 12-degree horizontal turn (no leaning, no overhead angle), exact NURTURE EVERYDAY and TRAYN NUTRITION lettering, botanical and woman profile label in same locations, gold lid and base band, steel bottom rim. Canvas portrait 2:3. Entire tin uses 92% of canvas height, centered with 4% breathing room top and bottom. Soft warm neutral daylight, clear balanced midtones, restrained realistic metallic sheen, sharp readable central lettering. Transparent alpha background, perfectly clean silhouette. NO atmospheric halo, no fog, no dark vignette, no background glow, no floor or long cast shadow, no props, no added text or claim. Consistent premium photographic concept interpretation, not manufactured product evidence.
+
+### Mobile front — masters/front-mobile.png
+Input: masters/hero-mobile.png (edit target).
+Selected output: exec-1ab0e9ad-50dd-4d59-a821-bb8ad1e196f0.png. transparent_background: true.
+
+Use case: product-mockup. Edit target: freshly generated mobile-angle product cutout. Change ONLY the horizontal viewing angle to a perfectly straight centered FRONT VIEW of the same tin. Maintain identical scale, full-object framing, neutral lighting, true clean alpha, cream/gold colors, steel base, exact readable NURTURE EVERYDAY and TRAYN NUTRITION lettering, woman and botanical artwork, silhouette dimensions and label arrangement. Complete upright object fills 92% of portrait 2:3 canvas height, with 4% margin at top/bottom. No leaning, no overhead perspective, no extra text, no props, no background, no vignette or smoky halo. This is the paired mobile inspection view of a packaging concept.
+
+### Flat TRAYN endorsement — brand/trayn-endorsement-master.png
+Input: reference/trayn-wordmark.png (edit target, supplied actual identity).
+Selected output: exec-b86a2edc-e6fa-48e1-b5a1-c3320d94db8b.png. transparent_background: true.
+
+Use case: logo-brand / precise-object-edit. Edit target: provided TRAYN NUTRITION metallic wordmark. Create its flat single-colour adaptation for a premium ivory website header. Preserve the distinctive forward-slanted geometric TRAYN letter shapes, cut-out horizontal R/A details, exact spelling TRAYN, and the smaller spaced NUTRITION beneath with short rules at each side. Replace all metallic silver shading and thin bevel outlines with uniform solid deep espresso #382a22. Crisp clean edges; no texture, shadow, embossing, gradient or glow. Flat horizontal typographic brand mark only, transparent background, centered with tight but complete margins. No symbol, extra text, redesign, slogan or added decorative element.
+
+The selected masters are preserved in assets/. Mobile product composition is retained, with resize/encoding only. The logo delivery removes empty alpha margins and is encoded losslessly. It is a generated flat adaptation of the supplied identity, not a new claim of affiliation. NURTURE is an authored outlined typographic SVG, created by brand/create-wordmark.py from the licensed root Cormorant Garamond font with custom spacing; it is not a generated raster.
+
 Tool: built-in image_gen. Generated 9 October 2026. No CLI/API fallback. Input files and selected output IDs below are all retained in assets/ so the archive is not a source dependency. Product images were inspected before selection. Each output is a concept interpretation of the supplied packaging.
 
 ## Hero angle — masters/hero-angle.png
