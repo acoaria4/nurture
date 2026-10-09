@@ -1,18 +1,37 @@
 {
-  "name": "nurture-asset-preview",
-  "version": "0.1.0",
+  "name": "nurture-everyday",
   "private": true,
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
-    "verify:model": "node scripts/verify-model.mjs"
+    "dev": "vite --host 127.0.0.1 --port 4180",
+    "typecheck": "tsc --noEmit",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir .prerender && node scripts/prerender.mjs",
+    "preview": "vite preview --host 127.0.0.1 --port 4180",
+    "verify": "node scripts/verify.mjs",
+    "assets:prepare": "node scripts/prepare-media.mjs",
+    "assets:social": "node scripts/social-preview.mjs",
+    "verify:assets": "node scripts/verify-assets.mjs",
+    "verify:pages": "node scripts/verify-mobile-pages.mjs",
+    "preview:pages": "node scripts/serve-pages-preview.mjs",
+    "verify:accessibility": "node scripts/audit-accessibility.mjs",
+    "verify:browsers": "node scripts/cross-browser.mjs",
+    "measure:performance": "node scripts/performance.mjs"
   },
   "dependencies": {
-    "lucide": "^1.53.0",
-    "three": "^0.185.1"
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.26",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "playwright": "^1.64.0",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2",
     "vite": "^8.2.2"
   }
 }

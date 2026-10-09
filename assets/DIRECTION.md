@@ -1,0 +1,17 @@
+# Nurture asset direction — regenerated studio series
+
+## Mobile and identity refinement — 9 October 2026
+
+Keep the editorial luxury direction, warm ivory/espresso/champagne tokens, Cormorant/Manrope typography, and the single explicit closer-look interaction. Create an outlined uppercase NURTURE wordmark with carefully spaced letters; stack a smaller flat espresso adaptation of the supplied TRAYN Nutrition mark below it. The lockup has one alignment, no divider, no wrapped live brand copy, and remains complete at 320px. SVG outlines avoid font loading shifts and stay crisp on high-density phones.
+
+Create two matching mobile product masters: restrained near-front angle and straight front, entire tin upright with minimal intentional margins, true alpha without the former smoky halo. Preserve the packaging identity. Deliver dedicated responsive phone WebPs through picture sources; desktop keeps its own studio pair. Place the exploration CTA before the mobile study, keep the touch inspection control at least 44px high, enlarge the product within a reserved stage, and keep annotation space below the object. Portrait detail images retain their existing intentional frames. Native touch scrolling, reduced-motion immediate switching and static prerendered fallback remain unchanged. No Three.js or extra signature is justified.
+
+The existing site keeps its ivory editorial composition and single closer-look signature. Compatible design direction: high-end-visual-design, editorial luxury. All authored assets, the product reference, generation masters, brand marks, font files and licenses, icons, delivery images, and social artwork will live under the repository-root assets/ directory. No regeneration, build or runtime step may read old_website/.
+
+The supplied product-reference.png is the identity anchor. Preserve the cream cylinder, champagne-gold lid and lower band, steel base, exact brand names and woman/botanical illustration. Generated images are concept interpretations, not evidence of a manufactured product or formula. Brand marks and licensed typefaces are preserved, not redesigned.
+
+Create seven individual assets with the built-in image generator: restrained angle hero; matching straight-front cutout; deliberately framed lid/upper-label study; full profile-and-botanical artwork detail; empty open-tin study; carefully aligned lid view; everyday still life for the vision section. Use one warm softbox lighting language, realistic scale, 85–100mm-equivalent perspective, upright verticals, centered complete objects where applicable, and generous intentional margins. No arbitrary crop from a catalog render, tilted product, wide-angle distortion, floating props, loose ingredients, added claims, image overlay copy, or green-led decoration.
+
+Transparent front/angle assets support the existing closer-look crossfade. Detail photographs use their own portrait frames, without CSS recropping. Gallery images use contain. The vision still life keeps the full product visible. Deliver responsive WebP variants from the newly generated masters by resizing/encoding only; do not create new composition through cropping.
+
+Vite will serve assets/ directly in development and copy only runtime asset directories to dist/assets/ for production. Generation masters and the reference remain local source assets and are excluded from the deployed bundle. Fonts and marks also stay in this root asset system. A build/verification check must reject archive paths and confirm the site builds and renders while old_website is inaccessible.
