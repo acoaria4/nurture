@@ -1,0 +1,105 @@
+{
+  "generatedWith": "Built-in image_gen, 9 October 2026",
+  "reference": "reference/product-reference.png",
+  "framing": "Whole generation frame retained. Resize and encode only; no crop, trim, perspective correction or retouching.",
+  "files": [
+    {
+      "path": "product/hero.webp",
+      "source": "masters/hero-angle.png",
+      "width": 1000,
+      "height": 1500,
+      "bytes": 145582
+    },
+    {
+      "path": "product/hero-small.webp",
+      "source": "masters/hero-angle.png",
+      "width": 600,
+      "height": 900,
+      "bytes": 61964
+    },
+    {
+      "path": "product/front.webp",
+      "source": "masters/front.png",
+      "width": 1000,
+      "height": 1500,
+      "bytes": 148728
+    },
+    {
+      "path": "product/front-small.webp",
+      "source": "masters/front.png",
+      "width": 600,
+      "height": 900,
+      "bytes": 64118
+    },
+    {
+      "path": "product/finish.webp",
+      "source": "masters/finish.png",
+      "width": 1086,
+      "height": 1448,
+      "bytes": 74504
+    },
+    {
+      "path": "product/finish-small.webp",
+      "source": "masters/finish.png",
+      "width": 600,
+      "height": 800,
+      "bytes": 17252
+    },
+    {
+      "path": "product/artwork.webp",
+      "source": "masters/artwork.png",
+      "width": 900,
+      "height": 1125,
+      "bytes": 137746
+    },
+    {
+      "path": "product/artwork-small.webp",
+      "source": "masters/artwork.png",
+      "width": 450,
+      "height": 562,
+      "bytes": 32014
+    },
+    {
+      "path": "product/open.webp",
+      "source": "masters/open.png",
+      "width": 1000,
+      "height": 1250,
+      "bytes": 69352
+    },
+    {
+      "path": "product/open-small.webp",
+      "source": "masters/open.png",
+      "width": 600,
+      "height": 750,
+      "bytes": 25772
+    },
+    {
+      "path": "product/top.webp",
+      "source": "masters/top.png",
+      "width": 1000,
+      "height": 1000,
+      "bytes": 78068
+    },
+    {
+      "path": "product/top-small.webp",
+      "source": "masters/top.png",
+      "width": 600,
+      "height": 600,
+      "bytes": 20564
+    },
+    {
+      "path": "product/ritual.webp",
+      "source": "masters/ritual.png",
+      "width": 1000,
+      "height": 1250,
+      "bytes": 123294
+    },
+    {
+      "path": "product/ritual-small.webp",
+      "source": "masters/ritual.png",
+      "width": 600,
+      "height": 750,
+      "bytes": 47300
+    }
+  ]
+}

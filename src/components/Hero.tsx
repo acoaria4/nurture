@@ -58,8 +58,8 @@ export default function Hero() {
       <div className="hero-stage">
         <div className="hero-stage-top"><span>Object study / 01</span><span>400g on reference artwork</span></div>
         <div className="hero-product" role="img" aria-label={inspecting ? 'Front view of the Nurture cream tin, gold lid and botanical artwork' : 'Three-quarter view of the Nurture Everyday concept tin'}>
-          <img className="hero-angle" ref={angle} src={product.media.hero} srcSet={`${product.media.heroSmall} 600w, ${product.media.hero} 1000w`} sizes="(max-width: 759px) 51vw, 29vw" width="1000" height="1686" alt="" fetchPriority="high" />
-          <img className="hero-front" ref={front} src="./media/front-cutout.webp" width="1000" height="1613" alt="" loading="eager" onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
+          <img className="hero-angle" ref={angle} src={product.media.hero} srcSet={`${product.media.heroSmall} 600w, ${product.media.hero} 1000w`} sizes="(max-width: 759px) 51vw, 29vw" width="1000" height="1500" alt="" fetchPriority="high" />
+          <img className="hero-front" ref={front} src={product.media.front} srcSet={`${product.media.frontSmall} 600w, ${product.media.front} 1000w`} sizes="(max-width: 759px) 51vw, 29vw" width="1000" height="1500" alt="" loading="eager" onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
         </div>
         <div className="hero-detail-notes" aria-hidden={!inspecting}>
           <p className="hero-detail-note"><span>01</span>A warm gold finish.</p>
@@ -67,11 +67,9 @@ export default function Hero() {
         </div>
         <span className="hero-stage-edition" aria-hidden="true">Everyday, by design.</span>
       </div>
-      <div className="hero-study-bottom"><span>CGI packaging concept</span><button className="hero-inspect" type="button" aria-controls="hero-study" aria-pressed={inspecting} disabled={!loaded || failed} onClick={() => setInspecting(value => !value)}>{failed ? 'Front view unavailable' : !loaded ? 'Loading detail view…' : inspecting ? 'Return to the silhouette' : 'A closer look'}<span aria-hidden="true">{inspecting ? '−' : '+'}</span></button></div>
+      <div className="hero-study-bottom"><span>Generated packaging concept</span><button className="hero-inspect" type="button" aria-controls="hero-study" aria-pressed={inspecting} disabled={!loaded || failed} onClick={() => setInspecting(value => !value)}>{failed ? 'Front view unavailable' : !loaded ? 'Loading detail view…' : inspecting ? 'Return to the silhouette' : 'A closer look'}<span aria-hidden="true">{inspecting ? '−' : '+'}</span></button></div>
       <p className="sr-only" aria-live="polite">{inspecting ? 'Front artwork: warm gold finish and botanical linework.' : 'Three-quarter silhouette of the packaging concept.'}</p>
     </div>
     <div className="hero-baseline"><span>Everyday care, thoughtfully imagined.</span><a href="#intention">The idea behind Nurture <span aria-hidden="true">↓</span></a></div>
   </section>;
 }
-
-

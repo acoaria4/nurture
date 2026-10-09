@@ -164,7 +164,7 @@ try {
   assert.notEqual(focus, 'none');
   report.accessibility.keyboard = 'First tab skip link with visible focus; native modal focus trap';
   const failurePage = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
-  await failurePage.route('**/media/top.webp', route => route.fulfill({ status: 404, body: '' }));
+  await failurePage.route('**/assets/product/top*.webp', route => route.fulfill({ status: 404, body: '' }));
   await failurePage.goto(base, { waitUntil: 'networkidle' });
   await jump(failurePage, '#object');
   await failurePage.getByRole('button', { name: /The finishing touch/ }).click();

@@ -59,6 +59,6 @@ try {
     const data = await readFile(new URL(`../dist/assets/${file}`, import.meta.url));
     report.artifacts[file] = { bytes: data.length, gzipBytes: gzipSync(data).length };
   }
-  report.artifacts.social = { bytes: (await stat(new URL('../public/social-preview.jpg', import.meta.url))).size, width: 1200, height: 630 };
+  report.artifacts.social = { bytes: (await stat(new URL('../assets/social/social-preview.jpg', import.meta.url))).size, width: 1200, height: 630 };
   report.completed = true;
 } finally { await browser.close(); await writeFile(new URL('../verification/performance.json', import.meta.url), JSON.stringify(report,null,2)); console.log(JSON.stringify(report,null,2)); }

@@ -7,5 +7,5 @@ export function SectionLabel({ number, children }: { number: string; children: R
   return <p className="section-label"><span>{number}</span><span>{children}</span></p>;
 }
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
-  return <span className="arrow" aria-hidden="true"><img src={`./icons/arrow-${diagonal ? 'up-right' : 'right'}.svg`} alt="" width="20" height="20" /></span>;
+  return <span className="arrow" aria-hidden="true"><img src={`./assets/icons/arrow-${diagonal ? 'up-right' : 'right'}.svg`} alt="" width="20" height="20" /></span>;
 }

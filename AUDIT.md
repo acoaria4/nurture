@@ -78,3 +78,27 @@ At the user's request, the completed showcase was promoted to the repository roo
 
 
 Post-migration verification passed: root type checking, prerendered production build, and the full root production-browser suite across 320–1920px, including interactions, keyboard navigation, reduced motion, no-JavaScript rendering and media-error recovery. The archived application's type checking and production build also passed. Ignore-rule checks confirm that generated output is untracked in both projects while source files, assets, lockfiles and .env.example remain trackable.
+
+## Regenerated asset edition — current verification
+
+The site now has a single repository-root assets/ library. Seven product images were freshly generated with the built-in image_gen tool from the supplied packaging mockup. The actual prompts, selected output IDs and input roles are in assets/GENERATION.md; sources/licenses are in assets/PROVENANCE.md. There are fourteen responsive WebP deliveries, freshly regenerated sharing artwork, original brand encodings, local fonts/licenses, Solar icons and favicon. Original identity marks and typefaces are preserved rather than replaced with generated substitutes.
+
+Removed the root public/ and src/media/ copies and every root regeneration dependency on the archived application. The new finish and artwork images have dedicated compositions; CSS preserves their portrait frames instead of cropping generic catalog renders. The vision now uses a complete product still life instead of the old enlarged lid crop. The hero's matching front/angle pair retains the same signature, with visible rotation and reduced-motion/static alternatives. Generation masters and original reference files are excluded from deployment. Font license notices and icon attribution are deployed.
+
+A real archive-independence check temporarily moved old_website out of its expected path, then successfully ran assets:prepare, type checking, production build, asset integrity and the full production-browser suite. The archive was restored in a finally block. All fourteen source/delivery image hashes match. Twenty-nine HTML asset references resolve to built files. No source/runtime/build/regeneration archive dependency was found. Authored assets remain trackable; caches, builds and local verification outputs are ignored.
+
+The five layout sizes, keyboard navigation, gallery, inspection, native FAQ, no-JavaScript page, live reduced motion, media failure/recovery and HTTP/JavaScript error checks all passed with the new set. Edge 154.0.4258.62 and WebKit 27.2 passed at 1440 and 390px. Development unmount/remount diagnostics still return to zero page animations, scroll triggers, Lenis tickers and dialog locks. Desktop/mobile Axe scans each report 26 passing rules, zero violations and a contrast item requiring manual review. Actual device/Safari and screen-reader tests remain outside these checks.
+
+The sharing-image renderer initially fell back to system fonts because its document had no matching origin. It now renders from a same-origin intercepted document and explicitly verifies both custom fonts before saving. The final image was visually inspected with the correct Cormorant/Manrope pairing.
+
+Fresh performance measurements after regeneration (nine sequential cold-cache headless Chrome production loads; three per scenario; 4× CPU, 1.6 Mbps download, 0.75 Mbps upload, 150ms latency for the throttled scenario):
+
+| Current median | LCP | FCP | CLS | Transfer bytes | Observed long-task blocking |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Desktop 1440 × 900 | 152ms | 152ms | 0.000197 | 618,561 | 4ms |
+| Mobile 390 × 844 | 112ms | 112ms | 0 | 528,995 | 0ms |
+| Throttled mobile | 2,040ms | 976ms | 0.04409 | 528,995 | 78ms |
+
+These remain local lab observations, not Lighthouse scores or field metrics. LCP was the angle product image in every sample. Initial mobile transfer is 51,136 bytes (8.8%) lower than the previous edition. No claim is made that every timing improved. Current JS is 377,741 bytes / 123,840 gzip; CSS 23,994 / 5,819 gzip; sharing JPEG 52,410 bytes at 1200 × 630. Individual samples and conditions are retained locally in verification/performance.json.
+
+Current subjective rubric assessment: Design 8.3/10, Usability 8.5/10, Creativity 7/10, Content 7/10. More legible product artwork and purposeful framing improve visual cohesion. Generated interpretations still have small label/illustration differences, and physical dimensions and final manufactured materials remain unapproved. These are internal judgments, not award scores. Final product photography, approved artwork/formula and launch integrations remain future work. No submission or deployment was performed.

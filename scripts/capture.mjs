@@ -2,7 +2,7 @@ import { createRequire } from 'node:module';
 import { mkdir } from 'node:fs/promises';
 await mkdir(new URL('../verification/', import.meta.url), { recursive: true });
 const require = createRequire(import.meta.url);
-const { chromium } = require(process.env.PLAYWRIGHT_MODULE);
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const browser = await chromium.launch({ executablePath: process.env.BROWSER_EXECUTABLE, headless: true });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
 await page.goto('http://127.0.0.1:4180/', { waitUntil: 'networkidle' });

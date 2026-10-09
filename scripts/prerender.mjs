@@ -11,8 +11,9 @@ template = template.replace('</head>', `    ${preloads}\n  </head>`);
 if (process.env.PUBLIC_SITE_URL) {
   const url = new URL(process.env.PUBLIC_SITE_URL);
   if (!['https:', 'http:'].includes(url.protocol)) throw new Error('PUBLIC_SITE_URL must be an HTTP(S) URL');
-  const image = new URL('social-preview.jpg', url.href.endsWith('/') ? url.href : `${url.href}/`).href;
-  template = template.replaceAll('content="./social-preview.jpg"', `content="${image.replaceAll('&', '&amp;').replaceAll('"', '&quot;')}"`);
+  const image = new URL('assets/social/social-preview.jpg', url.href.endsWith('/') ? url.href : `${url.href}/`).href;
+  const escapedImage = image.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
+  template = template.replace(/(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*(")/g, (_, prefix, suffix) => `${prefix}${escapedImage}${suffix}`);
   const escaped = url.href.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
   template = template.replace('</head>', `<link rel="canonical" href="${escaped}" /><meta property="og:url" content="${escaped}" />\n  </head>`);
 }

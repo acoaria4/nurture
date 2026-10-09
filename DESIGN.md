@@ -52,3 +52,7 @@ The complete implementation, final corrections, actual build/browser/accessibili
 
 The completed redesign was promoted to the repository root at the user's request. The original root application and its assets are preserved in `old_website/`. The media regeneration script now reads that archive; the design decisions above record the original build phase.
 
+
+## Regenerated asset direction
+
+The existing editorial-luxury composition now uses a freshly generated studio series anchored to the supplied packaging reference. assets/DIRECTION.md records the framing plan written before generation. Seven selected masters, full prompt provenance, licensed typography/marks/icons and responsive deliveries are retained under root assets/. The former product crops and archive-source regeneration dependencies have been removed. Hero, gallery, details and vision preserve the newly authored image frames. The motion stack and single closer-look interaction remain unchanged.

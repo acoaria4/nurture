@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 const require = createRequire(import.meta.url);
 await mkdir(new URL('../verification/', import.meta.url), { recursive: true });
-const { chromium } = require(process.env.PLAYWRIGHT_MODULE);
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const browser = await chromium.launch({ executablePath: process.env.BROWSER_EXECUTABLE, headless: true });
 const reports = [];
 try {
