@@ -1,0 +1,68 @@
+{
+  "url": "http://127.0.0.1:4180/",
+  "layouts": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "viewport": 1440,
+      "document": 1440,
+      "pageHeight": 6765,
+      "brokenImages": []
+    },
+    {
+      "name": "tablet",
+      "width": 820,
+      "height": 1180,
+      "viewport": 820,
+      "document": 820,
+      "pageHeight": 6003,
+      "brokenImages": []
+    },
+    {
+      "name": "wide",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "pageHeight": 7500,
+      "brokenImages": []
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "pageHeight": 7198,
+      "brokenImages": []
+    },
+    {
+      "name": "small-mobile",
+      "width": 320,
+      "height": 740,
+      "viewport": 320,
+      "document": 320,
+      "pageHeight": 7373,
+      "brokenImages": []
+    }
+  ],
+  "workflows": {
+    "gallery": "All four views, keyboard arrows, Escape, focus restoration",
+    "faq": "Pointer and keyboard disclosure",
+    "primaryCta": "Navigates to the product study",
+    "desktopNavigation": "All three main links align beneath the header",
+    "backToTop": true,
+    "mobileMenu": "Open, navigate, Escape, scroll unlock",
+    "mobileGallery": true,
+    "mediaFailure": "Real image error, disabled enlargement, recovery by selecting another view"
+  },
+  "accessibility": {
+    "reducedMotion": "Native scroll, no entrance transforms, visible final content",
+    "noJavaScript": "Full prerendered page, navigation, image links, native FAQ",
+    "keyboard": "First tab skip link with visible focus; native modal focus trap"
+  },
+  "errors": [],
+  "failedResponses": [],
+  "passed": true
+}
