@@ -1,5 +1,13 @@
 # Selected image-generation requests
 
+## Full-tin material study — masters/finish-angle.png
+
+Tool: built-in image_gen, 9 October 2026. Reference: reference/product-reference.png (packaging identity only). Selected output: exec-b05979be-af76-46e5-a8c7-e1be1a87c641.png. transparent_background: false. Selected master inspected before integration; no CLI/API fallback.
+
+Use case: product-mockup. Reference image: assets/reference/product-reference.png supplied packaging concept; use ONLY the Nurture tin identity from it, not the flowers or surrounding scene. Create a new photorealistic premium editorial product photograph for a cream-and-espresso light-luxury website. Portrait 3:4 frame. One entire upright cream cylindrical NURTURE EVERYDAY tin with champagne-gold lid and lower band, narrow steel bottom rim, TRAYN NUTRITION logo, woman-profile and fine botanical artwork. Preserve the product proportions, main lettering and printed artwork from the reference; existing label text belongs to concept artwork, do not add claims or change the label. Horizontal three-quarter turn of about 25–30 degrees, natural 85mm perspective, camera just above the label midpoint so a little of the lid top is visible. Upright verticals, no leaning or dramatic camera angle. Full tin visible, centered, fills about 85% of image height and around 65% of image width, about 7% space above the lid and 8% below the base. Pale warm stone surface and softly lit oat/ivory studio backdrop, subtle contact shadow grounded below the tin, refined gold reflections and realistic matte paper texture. Clear recognizable NURTURE text and artwork. Quiet warm daylight from upper left. Product-led tightly composed frame, visually present in its upper half as the page scrolls. No oversized empty upper area, no chopped lid or base, no vignette, no smoky halo, no flowers, no plants, no extra props, no fake badges or overlaid typography. Generated packaging concept, not a manufactured product photo.
+
+Delivery: product/finish-angle.webp and finish-angle-small.webp, whole portrait frame retained through resize/encoding only. This replaces the left material-section study with a complete product view whose lid begins near the top of the image. The former masters/finish.png remains as generation history; its unused delivery WebPs have been retired.
+
 ## Mobile and header edition — built-in image_gen, 9 October 2026
 
 ### Mobile angle — masters/hero-mobile.png

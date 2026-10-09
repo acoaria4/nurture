@@ -1,5 +1,13 @@
 # Implementation audit — 9 October 2026
 
+## Full-tin material image refinement
+
+At the user's request, replaced the left material-section lid close-up, whose large blank upper area felt empty while scrolling, with a newly generated complete upright tin portrait at a modest three-quarter angle on pale stone. The object begins near the top of its 3:4 frame, with lid, label, gold lower band and steel base visible together. The complementary right-hand artwork image remains the close study. Caption and alt text now describe the complete cream-and-gold view. Added spaces around the supporting paragraph's desktop line breaks so hiding those breaks on mobile does not join sentences or words together.
+
+Source: assets/masters/finish-angle.png, generated with the built-in image_gen tool using the supplied root packaging reference. Exact request/output ID are in assets/GENERATION.md and provenance in PROVENANCE.md. Delivery: assets/product/finish-angle.webp (1086×1448, 130,806 bytes) and finish-angle-small.webp (600×800, 45,364 bytes). Resize/encoding only; the full frame is preserved. Obsolete finish.webp and finish-small.webp are retired; the old PNG remains as source history. App.tsx, product.ts, prepare-media.mjs and the asset manifest select the new files. There are no motion, navigation or layout-code changes.
+
+Actual checks for this refinement: asset preparation, TypeScript, prerendered production build, 18-image/30-reference asset integrity and git diff whitespace checks passed. Chrome rendering through the Pages-style /nurture/ path was checked at 320, 390, 820, 1440 and 1920px, including DPR 3 on phones. Both material images decoded; the new source was selected at every width, its image box retained 3:4 with contain, and no overflow, HTTP or JavaScript errors occurred. Desktop and mobile section screenshots were visually inspected. Local evidence is in verification/material-study.json and material-study-1440/390.png. This asset-only refinement did not rerun the full interaction suite or performance measurements; those figures below belong to the earlier build. The generated artwork remains a disclosed concept interpretation. This local change has not been published to GitHub Pages.
+
 ## Latest edition — mobile identity and GitHub Pages readiness
 
 The root site is independent of the previous application. The archive was permanently deleted at the user's request after the 14-image asset integrity check passed. With that folder absent, root asset preparation, type checking, production builds and the final browser suites all passed. Older sections below record earlier editions and measurements.
