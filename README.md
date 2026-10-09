@@ -1,57 +1,59 @@
-# Nurture Everyday by TRAYN Nutrition
+# Nurture — The everyday, considered
 
-A React + TypeScript product concept website with GSAP, ScrollTrigger, Lenis, a React Bits-inspired magnetic CTA, and a lazy-loaded Three.js product journey.
+The light luxury Nurture product concept showcase is the root application. The previous website, including its source assets and tooling, is archived in `old_website/`. This edition follows the installed `build-awwwards-quality-sites` workflow and the compatible editorial luxury direction from `high-end-visual-design`. See [DESIGN.md](DESIGN.md) for the ordered concept, art direction and interaction decisions, and [AUDIT.md](AUDIT.md) for measured verification and limitations.
 
-## Local use
+## Run
 
 ```sh
-npm install
-npm run dev -- --port 4173
-npm run typecheck
-npm run build
+npm ci
+npm run dev
 ```
 
-- Website: `http://127.0.0.1:4173/`
-- Full model inspection and export: `/model-preview/`
-- Original CGI gallery: `/model-preview/photos.html`
+Open http://127.0.0.1:4180/. For the production page:
 
-The multi-page production build keeps all three routes. Serve `dist` with a static web server; do not open the source HTML directly.
+```sh
+npm run typecheck
+npm run build
+npm run preview
+```
 
-Vite reports one large Three.js chunk (approximately 542kB uncompressed). It is loaded when the product story approaches the viewport, not with the initial page. Website delivery images are WebP; the original high-resolution PNGs remain available in the separate asset gallery.
+The build writes a complete prerendered page to `dist/`. Deploy that directory on a static host; relative assets support a subfolder. `noindex, nofollow` remains deliberate during concept development. Set `PUBLIC_SITE_URL` to the confirmed full deployment URL before building to produce absolute sharing-image URLs, a canonical URL and `og:url`. Remove noindex only when public launch content is approved.
 
-## Design and motion
+## Design and interaction
 
-Botanical luxury: forest green, ivory, warm gold, charcoal, self-hosted Cormorant Garamond and Manrope. The product-led photographic hero flows into editorial copy, a scroll-controlled full 3D tin, on-pack nutrient categories, lifestyle imagery, purchase preview, FAQs and footer.
+Warm ivory, espresso typography, oat and stone surfaces, restrained champagne accents. Self-hosted Cormorant Garamond and Manrope. The page presents the existing CGI product as an object study, followed by material details, a four-view gallery, the brand aspiration and honest development FAQs.
 
-GSAP owns hero and word reveals, image parallax and scroll measurement. Lenis is the only smooth-scroll engine, synchronized through the GSAP ticker. CSS handles ordinary hover and focus states. The locally adapted React Bits Magnet uses scoped pointer events and GSAP quickTo rather than continuous React updates; its original license is retained in `licenses/react-bits-LICENSE.md`.
+Exactly one signature hero interaction: **A closer look**. An explicit button changes the angled tin to its front view and reveals two packaging annotations in under one second. It reverses on repeat activation. Mobile reserves space for the notes; reduced motion switches views immediately. Without JavaScript, the full prerendered story, angle render, native FAQ and gallery-image links remain usable.
 
-Three.js draws only on scroll, resize, visibility restoration or initial load. It pauses offscreen and when hidden, caps pixel ratio at 1.75, disposes resources on unmount, and guards late model loads. Reduced motion uses the static product poster, native scrolling and nonanimated final content. WebGL failure/context loss retains the poster and the rest of the page. The chapter buttons remain usable without scroll animation.
+React, TypeScript and Vite; GSAP for the short entrance and signature; ScrollTrigger for selected one-time reveals. Lenis is the sole smooth-scroll engine, limited to fine-pointer desktop devices. Touch and reduced motion use native scroll. No live 3D runtime is required for this concept. Both dialogs explicitly wrap keyboard focus, support Escape and restore focus and scrolling when closed.
 
-## Functionality
+## Product data and future launch
 
-- Responsive navigation, accessible dialogs and keyboard-operated product tabs.
-- Six-view product gallery, enlarged images, arrow navigation and Escape dismissal.
-- Quantity control and local bag, persisted across reloads and synchronized between tabs.
-- Remove/empty states, quantity limit of 12 and disabled checkout.
-- Light/dark appearance preference, FAQ disclosures and policy dialogs.
-- Basic readable product information and gallery link without JavaScript.
+`src/content/product.ts` owns identity, concept status, images, gallery configuration and FAQ. `src/content/launch.ts` provides types for future commerce, variants, specifications and genuine testimonials. Unconfirmed fields are null or empty and are not displayed.
 
-## Launch information
+The present primary action explores the concept. Sales require approved formulation, ingredients/allergens, nutrition information, suitability and serving instructions, final artwork and photographs, accurate packs/variants, pricing, inventory, shipping/returns policies, checkout and legal copy. No product claims or launch date have been assumed. An email signup needs a real service, consent/privacy copy and verified success/error handling. There is no simulated purchase or signup.
 
-This is deliberately not a live checkout. `assets/product-content.placeholders.json` is the supplied product information ledger. The 400g weight and original tagline are from the supplied packaging reference. Price, flavours, full ingredients, allergens, nutrition amounts, preparation, suitability, final claims, certifications, reviews, shipping, returns and commerce integration remain unconfirmed. No fake evidence or orders are generated. `noindex,nofollow` is intentional until approved launch content is supplied.
+## Media
 
-Replace the relevant placeholders and preview policies, integrate actual commerce, approve artwork/dimensions and provide final product information before public launch.
+Existing CGI packaging views are disclosed as concepts. The original supplied reference informs the brand identity, positioning, aspiration and reference 400g pack. The prior campaign and lifestyle images are unused and removed from this edition. Social artwork is a 1200 × 630 composition using the existing product cutout and local fonts. Solar arrows are attributed to 480 Design under CC BY 4.0. See `public/media/PROVENANCE.md` and `public/icons/ATTRIBUTION.txt`.
 
-## Assets and provenance
-
-Original brand marks and packaging reference: supplied by the user. Original sources remain unchanged. CSS alpha masks tint the supplied logo silhouette to match Nurture's palette.
-
-Campaign and morning lifestyle images: generated concept assets, not manufactured-product photographs or endorsements. Product gallery and live tin: CGI concepts derived from the same full tin model. See `assets/ASSET-NOTES.md`, `assets/3d/README.md` and `assets/product-photos/v2/README.md`.
-
-`scripts/prepare-web-assets.mjs` produces lighter WebP delivery copies in `assets/web`, without changing original artwork. Its manifest records each source and output.
+`scripts/prepare-media.mjs` regenerates selected optimized renders from `old_website/assets/` using Sharp. `scripts/social-preview.mjs` recreates the sharing image from a running preview. Day-to-day development and deployment do not need those tooling dependencies or archived source assets.
 
 ## Verification
 
-`scripts/verify-site.mjs` uses Playwright plus Sharp for visual and canvas checks. Set `PLAYWRIGHT_MODULE`, `SHARP_MODULE` and `BROWSER_EXECUTABLE` to installed runtime locations when these are not available from project dependencies. `SITE_URL` can target a production preview. Reports and captures are written to `verification/site`.
+The browser scripts require Playwright and a compatible installed browser. Axe is installed as a development dependency. `PLAYWRIGHT_MODULE` can point to a bundled Playwright directory; `BROWSER_EXECUTABLE` selects Chromium. `SITE_URL` overrides the production preview address.
 
-It exercises gallery/keyboard behaviour, local bag persistence/removal, pending checkout, information tabs, FAQ, theme, desktop/mobile layouts, product pixel visibility/framing, scroll poses, reduced motion and no-JavaScript content. Existing model and gallery verification scripts are retained.
+```sh
+npm run verify
+npm run verify:accessibility
+npm run verify:browsers
+npm run measure:performance
+```
+
+The first suite checks 320, 390, 820, 1440 and 1920px layouts, anchors, gallery, dialogs, mobile navigation, keyboard focus, reduced motion, no-JavaScript content, missing-media recovery and HTTP/JavaScript errors. Accessibility scans cover desktop and mobile WCAG A/AA checks. Cross-browser checks use Edge and WebKit, then Chromium against a development server for unmount/remount diagnostics. Set `PLAYWRIGHT_BROWSERS_PATH` for the installed WebKit cache and `DEV_SITE_URL` for the development server (default port 4181).
+
+Performance runs three sequential cold-cache samples per scenario, including mobile with 4× CPU slowdown, 1.6 Mbps download and 150ms latency. These are local browser measurements, not Lighthouse scores, real-device results or field Core Web Vitals. Reports and screenshots live in `verification/` and are ignored by Git. The verification scripts create that directory when needed. Run performance separately from other browser jobs.
+
+## Archived website
+
+The previous site is preserved in `old_website/`. Run it separately with `npm --prefix old_website run dev -- --port 4182`. Build it with `npm --prefix old_website run build`. Root commands always target the new site. The root .gitignore applies to both projects; source assets and lockfiles stay trackable while dependencies, builds, browser caches, local reports and logs are ignored.

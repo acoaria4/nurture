@@ -4,34 +4,49 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger);
-
-export function useMotion(root: RefObject<HTMLElement | null>) {
+export function useMotion(root: RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const media = gsap.matchMedia();
-    let disposed = false;
-    const refresh = () => { if (!disposed) ScrollTrigger.refresh(); };
     media.add('(prefers-reduced-motion: no-preference)', () => {
-      const lenis = new Lenis({ lerp: 0.085, smoothWheel: true, anchors: { offset: -82 } });
-      const tick = (time: number) => lenis.raf(time * 1000);
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add(tick);
-      gsap.ticker.lagSmoothing(0);
       const context = gsap.context(() => {
-        gsap.from('.hero-word', { y: 70, duration: 1.2, stagger: 0.12, ease: 'power4.out' });
-        gsap.from('.hero-support', { y: 20, duration: 1, stagger: 0.1, ease: 'power3.out', delay: 0.25 });
-        gsap.from('.hero-image', { scale: 1.045, duration: 1.7, ease: 'power3.out' });
+        gsap.timeline({ defaults: { ease: 'power3.out' } })
+          .from('.hero-word', { y: 20, opacity: .65, duration: .85 })
+          .from('.hero-product', { y: 18, duration: 1 }, .05)
+          .from('.hero-description, .hero-cta', { y: 12, opacity: .7, stagger: .08, duration: .65 }, .2);
         gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach(element => {
-          gsap.from(element, { y: 34, opacity: 0, duration: 0.85, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 92%', once: true } });
+          gsap.from(element, { y: 22, duration: .85, scrollTrigger: { trigger: element, start: 'top 92%', once: true } });
         });
-        gsap.utils.toArray<HTMLElement>('[data-word-reveal]').forEach(heading => {
-          gsap.from(heading.querySelectorAll('.word-inner'), { yPercent: 105, duration: 0.9, stagger: 0.045, ease: 'power4.out', scrollTrigger: { trigger: heading, start: 'top 92%', once: true } });
+        gsap.utils.toArray<HTMLElement>('[data-word-reveal]').forEach(element => {
+          gsap.from(element.querySelectorAll('.word-inner'), { yPercent: 105, duration: .85, stagger: .035, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 90%', once: true } });
         });
-        gsap.to('.ritual-image', { yPercent: -7, ease: 'none', scrollTrigger: { trigger: '#ritual', start: 'top bottom', end: 'bottom top', scrub: 1 } });
       }, root);
-      return () => { context.revert(); lenis.destroy(); gsap.ticker.remove(tick); };
+      return () => context.revert();
     });
+    media.add('(prefers-reduced-motion: no-preference) and (pointer: fine) and (min-width: 900px)', () => {
+      const lenis = new Lenis({ duration: .9, smoothWheel: true, syncTouch: false });
+      lenis.on('scroll', ScrollTrigger.update);
+      const tick = (time: number) => lenis.raf(time * 1000);
+      gsap.ticker.add(tick);
+      const element = root.current!;
+      const onAnchor = (event: MouseEvent) => {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+        const link = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
+        const hash = link?.getAttribute('href');
+        if (!hash || hash === '#') return;
+        const destination = document.getElementById(decodeURIComponent(hash.slice(1)));
+        if (!destination) return;
+        event.preventDefault();
+        if (location.hash !== hash) history.pushState(null, '', hash);
+        const offset = Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+        lenis.scrollTo(destination.getBoundingClientRect().top + window.scrollY - offset, { onComplete: () => { if (destination.id === 'main') destination.focus({ preventScroll: true }); } });
+      };
+      element.addEventListener('click', onAnchor);
+      return () => { element.removeEventListener('click', onAnchor); gsap.ticker.remove(tick); lenis.destroy(); };
+    });
+    let cancelled = false;
+    const refresh = () => { if (!cancelled) ScrollTrigger.refresh(); };
     document.fonts.ready.then(refresh);
     window.addEventListener('load', refresh);
-    return () => { disposed = true; media.revert(); window.removeEventListener('load', refresh); };
+    return () => { cancelled = true; window.removeEventListener('load', refresh); media.revert(); };
   }, [root]);
 }
