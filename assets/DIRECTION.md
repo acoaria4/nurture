@@ -1,5 +1,9 @@
 # Nurture asset direction — regenerated studio series
 
+## Fuller material study — 9 October 2026
+
+Replace the left material-section image with a newly composed full-tin three-quarter portrait. Keep the editorial luxury palette, existing type/grid/spacing and one hero signature. The focal object starts near the top of its 3:4 frame and occupies about 85% of its height, with the gold lid, cream label and lower band visible together. Use a modest horizontal turn and natural lens perspective on pale stone; no leaning, dramatic crop, flowers or extra props. The right artwork detail remains the complementary close view. Desktop and mobile retain the complete portrait without CSS cropping. Generate from the actual root packaging reference, preserve the selected PNG master in assets/masters/, and encode 1200/600px WebPs under assets/product/. Treat the artwork as an explicitly disclosed packaging concept.
+
 ## Mobile and identity refinement — 9 October 2026
 
 Keep the editorial luxury direction, warm ivory/espresso/champagne tokens, Cormorant/Manrope typography, and the single explicit closer-look interaction. Create an outlined uppercase NURTURE wordmark with carefully spaced letters; stack a smaller flat espresso adaptation of the supplied TRAYN Nutrition mark below it. The lockup has one alignment, no divider, no wrapped live brand copy, and remains complete at 320px. SVG outlines avoid font loading shifts and stay crisp on high-density phones.

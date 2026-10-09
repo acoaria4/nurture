@@ -1,5 +1,9 @@
 # Asset provenance — regenerated studio series
 
+## Full-tin material study replacement
+
+masters/finish-angle.png is a freshly generated complete three-quarter tin portrait based on reference/product-reference.png, made with the built-in image_gen tool on 9 October 2026. It replaces the material section's former lid close-up, which left too much blank space above the product while scrolling. The tin begins near the top of a 3:4 frame and its entire silhouette rests on pale stone. product/finish-angle.webp and finish-angle-small.webp retain that composition without CSS cropping or image retouching. Exact request and output ID are in GENERATION.md. masters/finish.png is retained only as source history; its obsolete WebP deliveries have been removed. The new image remains an explicitly disclosed packaging interpretation, with the same unapproved artwork/formulation limitations.
+
 ## Mobile and header refinement
 
 The header now uses brand/nurture-wordmark.svg: seven outlined Cormorant Garamond uppercase letters with authored spacing. Its source is brand/create-wordmark.py and the original font/license is retained in fonts/. No external font is needed to render this asset. brand/trayn-endorsement-master.png is a built-in image_gen flat espresso adaptation of the user-supplied metallic TRAYN Nutrition mark. brand/trayn-endorsement.webp is its lossless, alpha-trimmed delivery. The original mark remains preserved. At header size the endorsement is intentionally subordinate; generated shape differences remain possible.

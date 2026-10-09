@@ -60,18 +60,18 @@
       "bytes": 36554
     },
     {
-      "path": "product/finish.webp",
-      "source": "masters/finish.png",
+      "path": "product/finish-angle.webp",
+      "source": "masters/finish-angle.png",
       "width": 1086,
       "height": 1448,
-      "bytes": 74504
+      "bytes": 130806
     },
     {
-      "path": "product/finish-small.webp",
-      "source": "masters/finish.png",
+      "path": "product/finish-angle-small.webp",
+      "source": "masters/finish-angle.png",
       "width": 600,
       "height": 800,
-      "bytes": 17252
+      "bytes": 45364
     },
     {
       "path": "product/artwork.webp",

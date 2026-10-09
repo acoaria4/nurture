@@ -12,7 +12,7 @@ const jobs = [
   { source: 'front', name: 'front', width: 1000, small: 600 },
   { source: 'hero-mobile', name: 'hero-mobile', width: 720, small: 360 },
   { source: 'front-mobile', name: 'front-mobile', width: 720, small: 360 },
-  { source: 'finish', name: 'finish', width: 1200, small: 600 },
+  { source: 'finish-angle', name: 'finish-angle', width: 1200, small: 600 },
   { source: 'artwork', name: 'artwork', width: 900, small: 450 },
   { source: 'open', name: 'open', width: 1000, small: 600 },
   { source: 'top', name: 'top', width: 1000, small: 600 },
