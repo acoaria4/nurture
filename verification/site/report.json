@@ -1,0 +1,136 @@
+{
+  "url": "http://127.0.0.1:4174/",
+  "viewports": [
+    {
+      "width": 2560,
+      "height": 1080,
+      "noOverflow": true,
+      "brokenImages": [],
+      "pixels": {
+        "colors": 169,
+        "goldPixels": 6379,
+        "edgeGold": 0,
+        "width": 1664,
+        "height": 949
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "noOverflow": true,
+      "brokenImages": [],
+      "pixels": {
+        "colors": 162,
+        "goldPixels": 6319,
+        "edgeGold": 0,
+        "width": 1248,
+        "height": 949
+      }
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "noOverflow": true,
+      "brokenImages": [],
+      "pixels": {
+        "colors": 145,
+        "goldPixels": 2516,
+        "edgeGold": 0,
+        "width": 832,
+        "height": 607
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "noOverflow": true,
+      "brokenImages": [],
+      "pixels": {
+        "colors": 163,
+        "goldPixels": 4529,
+        "edgeGold": 4,
+        "width": 477,
+        "height": 905
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "noOverflow": true,
+      "brokenImages": [],
+      "pixels": {
+        "colors": 131,
+        "goldPixels": 1356,
+        "edgeGold": 2,
+        "width": 390,
+        "height": 438
+      }
+    },
+    {
+      "width": 360,
+      "height": 740,
+      "noOverflow": true,
+      "brokenImages": [],
+      "pixels": {
+        "colors": 124,
+        "goldPixels": 826,
+        "edgeGold": 3,
+        "width": 360,
+        "height": 335
+      }
+    },
+    {
+      "width": 320,
+      "height": 900,
+      "noOverflow": true,
+      "brokenImages": [],
+      "pixels": {
+        "colors": 137,
+        "goldPixels": 1700,
+        "edgeGold": 5,
+        "width": 320,
+        "height": 495
+      }
+    }
+  ],
+  "workflows": {
+    "gallery": true,
+    "tabs": true,
+    "bag": {
+      "add": true,
+      "quantity": true,
+      "persisted": true,
+      "remove": true,
+      "checkoutDisabled": true
+    },
+    "faq": true,
+    "theme": true,
+    "reducedMotion": true,
+    "noJavaScript": true,
+    "webglFallback": true
+  },
+  "scene": {
+    "front": {
+      "colors": 153,
+      "goldPixels": 5333,
+      "edgeGold": 0,
+      "width": 936,
+      "height": 873
+    },
+    "open": {
+      "colors": 161,
+      "goldPixels": 4216,
+      "edgeGold": 0,
+      "width": 936,
+      "height": 873
+    },
+    "progress": {
+      "middleProgress": "0.489",
+      "endProgress": "0.960"
+    },
+    "staticRenderPaused": true,
+    "offscreenRenderPaused": true
+  },
+  "errors": [],
+  "passed": true
+}

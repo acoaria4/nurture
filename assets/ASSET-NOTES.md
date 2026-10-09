@@ -32,6 +32,12 @@ Nine matching 1600-by-2000 PNG renders are saved in `product-photos/v2/`, with f
 
 Exact reproduction needs approved flat label artwork and real packaging dimensions. An external 3D artist is optional.
 
-## Product information
+## Website campaign addition
+
+`nurture-everyday-morning-concept-v1.png` was generated with the built-in image-generation tool for the everyday-care section. It is an editorial lifestyle concept, not a real customer or testimonial. Prompt: "Generate a landscape editorial photograph for the Nurture Everyday women's nutrition brand website, 3:2 aspect. Authentic natural morning photograph of an Indian woman in her early thirties wearing an olive-green casual linen shirt, quietly enjoying a sunlit moment at a bright white kitchen counter beside a window. One hand loosely holds a simple off-white ceramic mug, relaxed and thoughtful expression, not a posed advertising grin. Medium-wide portrait, waist up with ample visible room around her, woman on right half, soft white curtains, one modest leafy green plant, no visible food, no powders, no supplement ingredients, no packaging, no text, no graphics, no product claims. High-end contemporary lifestyle campaign with true skin texture, clear natural daylight, delicate tactile white and olive styling. No brown/beige-heavy grade, no dark atmospheric blur, no fake lens flare. The image should express everyday self-care without representing any health outcome. Save as a website project asset."
+
+`web/` contains resized WebP encodings for website delivery. Original PNGs are retained unchanged. Supplied transparent TRAYN logos are copied to `brand/`; the site tints their alpha silhouettes using CSS masks, not regenerated logo artwork.
+
+## Pending launch information
 
 `product-content.placeholders.json` stores unknown values as null and provides explicit placeholder text. The 400g pack weight and supplied copy are transcribed from the reference, not independently verified. Do not invent prices, nutrient quantities, serving directions, reviews or certifications. Checkout remains pending until a destination or commerce integration is supplied.
